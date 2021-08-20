@@ -9,9 +9,7 @@ Are you ready for React?<br/>
 In this part of the lab, you will develop a project using React.js. <br/>
 
 ## Progress
-
-- [x] [Info](#frontend-lab)
 - [ ] Read the [Official Tutorial](https://ru.reactjs.org/docs/getting-started.html) and try it out
 - [ ] [Init Project](./init.md)
 
-🔮 PS: following [this link](./materials/useful-links.md) you can find a bunch of useful links
+🔮 PS: following [this link](../useful_links.md) you can find a bunch of useful links
