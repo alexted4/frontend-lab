@@ -111,9 +111,46 @@ i:hover{
     margin-top: 40px;
     text-transform: uppercase; 
 }
+
 .controls{
     padding-left: 40px;
 }
+
+/* Search Overlay */
+
+.search-overlay {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1005000;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+}
+
+.search-overlay > input{
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 60px;
+    background: none;
+    color: var(--secondary);
+    border: none;
+    box-shadow: none;
+}
+
+.search-overlay > i {
+    color: var(--primary);
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
 
 .navigation{
     padding-right: 40px;
@@ -274,6 +311,7 @@ i:hover{
 /* 5.0 CARDS */
 
 #cards{
+    display: block;
     background: none;
     margin-left: 10vw;
     margin-right: 10vw;
@@ -430,7 +468,7 @@ i:hover{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        top: 34.3vh;
+        top: 225px;
         width: 100%;
         background: #333;
         z-index: 100500;
@@ -508,13 +546,14 @@ i:hover{
 
     /* cards */
     #cards{
-        min-height: 4600px;
+        max-height: none;
     }
 
     .cards-container{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        max-height: none;
     }
 
     .card{
