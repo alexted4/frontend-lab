@@ -8,18 +8,7 @@
     const MONTHS_IN_YEAR = 12;
 
     var OneMoment = function(raw){   
-        this.date = new Date(raw);
-        
-        OneMoment.parse = function(date, mask) {
-            let year = mask.search('YYYY');
-            year = parseInt(date.slice(year, year + 4));
-            let month = mask.search('MM');
-            month = parseInt(date.slice(month, month + 2));
-            let day = mask.search('DD');
-            day = parseInt(date.slice(day, day + 2));
-            const newDate = new Date(year, month - 1, day);
-            return new OneMoment(newDate);
-        };  
+        this.date = new Date(raw); 
     
         this.format = function(mask) {
             if (mask !== ""){
@@ -65,10 +54,19 @@
         this.toDate = function() {
             return this.date;
         };
+
     };
 
-    const instance = new OneMoment(Date());
-    console.log(instance);
+    OneMoment.parse = function(date, mask) {
+        let year = mask.search('YYYY');
+        year = parseInt(date.slice(year, year + 4));
+        let month = mask.search('MM');
+        month = parseInt(date.slice(month, month + 2));
+        let day = mask.search('DD');
+        day = parseInt(date.slice(day, day + 2));
+        const newDate = new Date(year, month - 1, day);
+        return new OneMoment(newDate);
+    }; 
   
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
         module.exports = OneMoment;
