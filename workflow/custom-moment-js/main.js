@@ -31,7 +31,7 @@ instance.addEventListener('click', () => {
 });
 
 parse.addEventListener('click', () => {
-    render("Parser: " + moment.parse(parseDate.value, parseMask.value));
+    render ("Parser: " + OneMoment.parse(parseDate.value, parseMask.value).toDate());
 });
 
 format.addEventListener('click', () => {

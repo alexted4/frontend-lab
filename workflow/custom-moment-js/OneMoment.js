@@ -1,29 +1,31 @@
 (function() {
-    var OneMoment = (function() {
-        var OneMoment = function(raw) {
-            this.date = new Date(raw);
-        };
-       
-        OneMoment.prototype.parse = function parse(date, mask) {
-            if (date !== "" && mask !== ""){
-                let year = mask.search('YYYY');
-                year = date.slice(year, year + 4);
-                let month = mask.search('MM');
-                month = date.slice(month, month + 2);
-                let day = mask.search('DD');
-                day = date.slice(day, day + 2);
-                this.date = new Date(year + '-' + month + '-' + day);
-                return this.date;
-            } else {
-                return "ERROR! Date or Mask null, can't parse."
-            }
-        };
+    const DAYS_IN_YEAR = 365;
+    const DAYS_IN_MONTH = 30;
+    const HOURS_IN_DAY = 24;
+    const MINUTES_IN_HOUR = 60;
+    const SECONDS_IN_MINUTE = 60;
+    const MILISECONDS_IN_SECOND = 1000;
+    const MONTHS_IN_YEAR = 12;
 
-        OneMoment.prototype.format = function format(mask) {
+    var OneMoment = function(raw){   
+        this.date = new Date(raw);
+        
+        OneMoment.parse = function(date, mask) {
+            let year = mask.search('YYYY');
+            year = parseInt(date.slice(year, year + 4));
+            let month = mask.search('MM');
+            month = parseInt(date.slice(month, month + 2));
+            let day = mask.search('DD');
+            day = parseInt(date.slice(day, day + 2));
+            const newDate = new Date(year, month - 1, day);
+            return new OneMoment(newDate);
+        };  
+    
+        this.format = function(mask) {
             if (mask !== ""){
-                let year = this.date.getFullYear();
-                let month = this.date.getMonth() + 1;
-                let day = this.date.getDate();
+                const year = this.date.getFullYear();
+                const month = this.date.getMonth() + 1;
+                const day = this.date.getDate();
                 let result = mask.replace('YYYY', year);
                 result = result.replace('MM', month);
                 result = result.replace('DD', day);
@@ -31,24 +33,24 @@
             } else {
                 return "ERROR! Mask null, can't format."
             }
-        };
+        }
 
-        OneMoment.prototype.fromNow = function fromNow() {
-            let currentDate = new Date();
-            let difference = currentDate.getTime() - this.date.getTime();
+        this.fromNow = function(){
+            const currentDate = new Date();
+            const difference = currentDate.getTime() - this.date.getTime();
             
-            let seconds = Math.floor(difference / 1000),
-            minutes = Math.floor(seconds / 60),
-            hours   = Math.floor(minutes / 60),
-            days    = Math.floor(hours / 24),
-            months  = Math.floor(days / 30),
-            years   = Math.floor(days / 365);
+            let seconds = Math.floor(difference / MILISECONDS_IN_SECOND),
+            minutes = Math.floor(seconds / SECONDS_IN_MINUTE),
+            hours   = Math.floor(minutes / MINUTES_IN_HOUR),
+            days    = Math.floor(hours / HOURS_IN_DAY),
+            months  = Math.floor(days / DAYS_IN_MONTH),
+            years   = Math.floor(days / DAYS_IN_YEAR);
 
-            seconds %= 60;
-            minutes %= 60;
-            hours %= 24;
-            days %= 30;
-            months %= 12;
+            seconds %= SECONDS_IN_MINUTE;
+            minutes %= MINUTES_IN_HOUR;
+            hours %= HOURS_IN_DAY;
+            days %= DAYS_IN_MONTH;
+            months %= MONTHS_IN_YEAR;
 
             return (
                 years + " Years, " + 
@@ -56,23 +58,19 @@
                 days + " Days, " +
                 hours + "  Hours, " +
                 minutes + " Minutes, " +
-                seconds + " Seconds ago."
+                seconds + " Seconds."
             ) 
         };
 
-        OneMoment.prototype.toDate = function toDate() {
-            if (typeof this.date.getMonth === 'function'){
-                return this.date;
-            } else {
-                return "ERROR! date is not Date()"
-            } 
+        this.toDate = function() {
+            return this.date;
         };
-    
-        return OneMoment;
-    })();
+    };
   
-    if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
+    if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
         module.exports = OneMoment;
-    else
+    } else {
         window.OneMoment = OneMoment;
+    }
+
 })();
