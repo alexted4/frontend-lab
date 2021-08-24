@@ -66,11 +66,15 @@
             return this.date;
         };
     };
+
+    const instance = new OneMoment(Date());
+    console.log(instance);
   
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined'){
         module.exports = OneMoment;
     } else {
         window.OneMoment = OneMoment;
     }
+
 
 })();
