@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Custom Moment</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h4>Console</h4>
+        <div id = "output">
+           0... OneMoment automatic instancing with new Date()
+        </div>
+
+        <div>
+            <h4>Create OneMoment instance with miliseconds (timestamp)</h4>
+            <label>Miliseconds</label>
+            <input placeholder = "Enter Miliseconds" id = "instanceMilisecs"></input>
+            <button id = "instance">Create Instance</button>
+        </div>
+
+        <div>
+            <h4>Parse</h4>
+            <p>Mask expects day as DD, month as MM and year as YYYY</p>
+            <label>Date</label>
+            <input placeholder = "Enter Date" id = "parseDate"></input>
+            <label>Mask</label>
+            <input placeholder = "Enter Mask" id = "parseMask"></input>
+            <button id = "parse">Parse Date</button>
+        </div>
+
+        <div>
+            <h4>Format</h4>
+            <p>Mask expects day as DD, month as MM and year as YYYY</p>
+            <label>Mask</label>
+            <input placeholder = "Enter Mask" id = "formatMask"></input>
+            <button id = "format">Format Date</button>
+        </div>
+
+        <div>
+            <h4>From Now</h4>
+            <button id = "fromNow">Time From Now</button>
+        </div>
+
+        <div>
+            <h4>To Date</h4>
+            <button id = "toDate">To Date</button>
+        </div>
+
+        <!-- OneMoment Module -->
+        <script src="OneMoment.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
