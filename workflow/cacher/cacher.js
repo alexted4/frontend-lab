@@ -1,17 +1,14 @@
-//Can't make this work if it's not global
-const cache = new Map();
-
 var Cacher = function(){
-    //Don't know how to access from internal func
-    //this.cache = new Map();
+    this.cache = new Map();
     this.withCache = function(func){
-        return function(number){
-            if (cache.has(number)){
+        return (...args) => {
+            let key = args.join();
+            if (this.cache.has(key)){
                 console.log('found');
-                return cache.get(number);
+                return this.cache.get(key);
             } else {
-                let res = func(number);
-                cache.set(number, res);
+                let res = func(...args);
+                this.cache.set(key, res);
                 console.log('created');
                 return res;
             }
@@ -19,13 +16,15 @@ var Cacher = function(){
     }    
 }
 
-const number = document.getElementById("number");
+const cacher = new Cacher();
+const cachedFunc = cacher.withCache(math.factorial);
+
+const numbers = document.getElementById("numbers");
 const calculate = document.getElementById("calculate");
 const output = document.getElementById("output");
 
 calculate.addEventListener('click', () => {
-    const cacher = new Cacher();
-    const cachedFunc = cacher.withCache(math.factorial);
-    const result = cachedFunc(parseInt(number.value));
+    let arr = numbers.value.split(',');
+    const result = cachedFunc(arr);
     output.innerHTML = "Result = " + result;
 })
