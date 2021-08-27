@@ -1,14 +1,18 @@
 function colorCode(value){
-    if (typeof value === "string"){
-        return `<span class = "string">"${value}"</span>`
-    } 
-    if (typeof value === "number"){
-        return `<span class = "number">${value}</span>`
+    switch(typeof value){
+        case "string": {
+            return `<span class = "string">"${value}"</span>`
+        }
+        case "number": {
+            return `<span class = "number">${value}</span>`
+        }
+        default: {
+            return value;
+        }
     }
-    return value
 }
 
-function cbHandler(level){
+function onCheckboxToggle(level){
     const divs = document.querySelectorAll(`*[id^=lvl${level}]`);
     for (let i = 0; i < divs.length; i++){
         divs[i].classList.toggle('collapse');
@@ -21,16 +25,13 @@ function buildTree(obj) {
     const layout = [];
     if(obj !== null && typeof obj === "object") {
         Object.entries(obj).forEach(([key, value]) => {
-            if (Array.isArray(value)){
+            if (typeof value === "object"){
                 layout.push(
-                    `<div><input type = "checkbox" checked onChange="cbHandler(${depth})">${key} : [ ]
-                        <div class = "level" id = "lvl${depth}">`
-                );
-                depth++;
-                layout.push(buildTree(value));
-            } else if (typeof value === "object") {
-                layout.push(
-                    `<div><input type = "checkbox" checked onChange="cbHandler(${depth})">${key} : { }
+                    `<div><input 
+                        type = "checkbox" 
+                        checked 
+                        onChange="onCheckboxToggle(${depth})">
+                        ${key} : ${Array.isArray(value) ? '[ ]' : '{ }'}
                         <div class = "level" id = "lvl${depth}">`
                 );
                 depth++;
@@ -55,7 +56,6 @@ function render(res){
 }
 
 submit.addEventListener('click', () => {
-    render('');
     if (input.value){
         try {
             const obj = JSON.parse(input.value);
