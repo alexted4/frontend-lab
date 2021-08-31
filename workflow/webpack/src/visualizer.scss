@@ -69,6 +69,8 @@ p {
 	margin: 0px 0px 0px 20px;
 }
 
-input {
-	margin-left: -1px;
+.keyWrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
