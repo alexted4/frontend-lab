@@ -1,0 +1,28 @@
+/* Global CSS */
+
+/* font-family: 'Rochester', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Rochester&display=swap');
+
+/* font-family: 'Asap', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
+
+/* font-family: 'Quicksand', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+/* color referance 
+
+	main bright green = #4caf50
+	greenish light grey = #cdd6cf
+	dark green = #1b5e20
+	dark grey = #555555
+	grey = #c4c4c4
+	light grey = #e0e0e0
+*/
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Asap';
+	color: #000;
+	background: #cdd6cf;
+}
