@@ -1,20 +1,21 @@
 import  useStyles from './style.js';
 import { AppBar, Toolbar, Typography, Button, Box } from '@material-ui/core';
-import React from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCocktail } from '@fortawesome/free-solid-svg-icons';
 import Modal from '../Modal'
+import Auth from '../Auth'
 
 const Navbar = () => {
-    const [open, setOpen] = React.useState(false);
+    const [showModal, setShowModal] = useState(false);
     const classes = useStyles();
     
-    const handleClickOpen = () =>{
-        setOpen(true);
+    const handleOpenModal = () =>{
+        setShowModal(true)
     };
 
-    const handleClose = () =>{
-        setOpen(false);
+    const handleCloseModal = () =>{
+        setShowModal(false)
     };
 
     return (
@@ -27,14 +28,16 @@ const Navbar = () => {
                             Cocktail App
                         </Typography>
                     </Box>
-                    <Button onClick={()=>handleClickOpen()} variant="outlined" className={classes.navButton}>Get Started</Button>
+                    <Button onClick={handleOpenModal} variant="outlined" className={classes.navButton}>Get Started</Button>
                 </Toolbar>
             </AppBar>
             <Modal 
-                handleClose={handleClose} 
-                open={open}
-                content={'auth'}
-            />
+                handleCloseModal={handleCloseModal} 
+                showModal={showModal}
+                title={'Authentication'}
+            >
+                <Auth/>
+            </Modal>
         </>
     )
 }
