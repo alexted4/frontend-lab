@@ -4,11 +4,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../store/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar } from '@fortawesome/free-regular-svg-icons'
 import Loading from '../Loading'
 import useStyles from './style.js'
-
-var _ = require('lodash');
+import Ingredients from '../Ingredients'
 
 const RandomCocktail = () => {
   const classes = useStyles()
@@ -17,75 +16,63 @@ const RandomCocktail = () => {
 
   const dispatch = useDispatch()
   const {fetchRandomCocktail} = bindActionCreators(actionCreators, dispatch)
+  
+  const loading = state.fetchRandomCocktail.loading
 
   useEffect(()=>{
     fetchRandomCocktail()
   },[])
 
-  const getIngredients = () => {
-    const result = []
-    for (let i = 1; i < 16; i++){
-      const ingredient = _.get(state, 'fetchRandomCocktail.cocktail.drinks[0].strIngredient' + i)
-      const measure = _.get(state, 'fetchRandomCocktail.cocktail.drinks[0].strMeasure' + i)
-      if (ingredient !== null){
-        result.push(
-          <tr key = {i}>
-            <td>{i}</td>
-            <td className={classes.ingredient}>{ingredient}</td>
-            <td>{measure}</td>
-          </tr>
-        )
-      } else break;
-    }
-    return result
+  if (loading){
+    return <Loading/>
+  } else {
+    const data = state.fetchRandomCocktail.cocktail.drinks[0]
+    return (
+      <Grid container direction="column" align="center">
+        <DialogContent>
+          <Grid item align="center">
+            <Typography variant = "h4">
+              {data.strDrink}
+            </Typography>
+          </Grid>
+          <Grid item align="right">
+            <Tooltip title="Add to favorites" >
+                <IconButton className={classes.favorite} aria-label="add">
+                  <FontAwesomeIcon icon={faStar} />
+                </IconButton>
+            </Tooltip>
+          </Grid>
+          <Grid item xs = {12}>
+            <img 
+              className={classes.thumbnail} 
+              alt = "thumbnail" 
+              src={data.strDrinkThumb}
+            ></img>
+          </Grid>
+          <Grid item xs = {12}>
+            <Typography variant = "h6" align="center">
+              Recipe
+            </Typography>
+            <table className={classes.table}>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th className={classes.ingredient}>Ingredient</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <Ingredients/>
+              </tbody>
+            </table>
+            <div className={classes.instructions}>
+              {data.strInstructions}
+            </div>
+          </Grid>
+        </DialogContent>
+      </Grid>
+    )
   }
-
-  if (state.fetchRandomCocktail.loading) {return <Loading/>} 
-  else return (
-    <Grid container direction="column" align="center">
-      <DialogContent>
-        <Grid item align="center">
-          <Typography variant = "h4">
-            {state.fetchRandomCocktail.cocktail.drinks[0].strDrink}
-          </Typography>
-        </Grid>
-        <Grid item align="right">
-          <Tooltip title="Add to favorites" >
-              <IconButton className={classes.favorite} aria-label="add">
-                <FontAwesomeIcon icon={farStar} />
-              </IconButton>
-          </Tooltip>
-        </Grid>
-        <Grid item xs = {12}>
-          <img 
-            className={classes.thumbnail} 
-            alt = "thumbnail" 
-            src={state.fetchRandomCocktail.cocktail.drinks[0].strDrinkThumb}
-          ></img>
-        </Grid>
-        <Grid item xs = {12}>
-          <Typography variant = "h6" align="left">
-            Recipe
-          </Typography>
-          <table className={classes.table}>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th className={classes.ingredient}>Ingredient</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {getIngredients()}
-            </tbody>
-          </table>
-          <div className={classes.instructions}>
-            {state.fetchRandomCocktail.cocktail.drinks[0].strInstructions}
-          </div>
-        </Grid>
-      </DialogContent>
-    </Grid>
-  )
 }
 
 export default RandomCocktail

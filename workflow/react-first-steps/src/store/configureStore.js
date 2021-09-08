@@ -6,8 +6,8 @@ export default function configureStore(preloadedState) {
     const middlewares = [thunk]
     const middlewareEnhancer = applyMiddleware(...middlewares)
   
-    const enhancers = [middlewareEnhancer]
-    const composedEnhancers = compose(...enhancers)
+    const enhancers = [middlewareEnhancer] || compose;
+    const composedEnhancers = compose(...enhancers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
   
     const store = createStore(reducers, preloadedState, composedEnhancers)
 
