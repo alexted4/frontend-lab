@@ -15,6 +15,10 @@ const useStyles = makeStyles({
             cursor: 'pointer',
             transition: '.3s ease-in-out'   
         }
+    },
+    input:{
+        width: '100%',
+        maxWidth: '200px'
     }
   });
 

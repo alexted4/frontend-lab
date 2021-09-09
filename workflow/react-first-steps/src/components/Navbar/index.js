@@ -1,8 +1,10 @@
 import  useStyles from './style.js';
 import { AppBar, Toolbar, Typography, Button, Box } from '@material-ui/core';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCocktail } from '@fortawesome/free-solid-svg-icons';
+import UserMenu from '../UserMenu/';
 import Modal from '../Modal'
 import Auth from '../Auth'
 
@@ -18,6 +20,8 @@ const Navbar = () => {
         setShowModal(false)
     };
 
+    const state = useSelector((state) => state)
+
     return (
         <>
             <AppBar position="static">
@@ -28,7 +32,12 @@ const Navbar = () => {
                             Cocktail App
                         </Typography>
                     </Box>
-                    <Button onClick={handleOpenModal} variant="outlined" className={classes.navButton}>Get Started</Button>
+                    {state.authenticate.user.token ? <UserMenu/> : 
+                    <Button 
+                        onClick={handleOpenModal} 
+                        variant="outlined" 
+                        className={classes.navButton}
+                    >Get Started</Button>}     
                 </Toolbar>
             </AppBar>
             <Modal 

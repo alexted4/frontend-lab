@@ -11,7 +11,8 @@ const Ingredients = () => {
         const ingredient = _.get(state, 'fetchRandomCocktail.cocktail.drinks[0].strIngredient' + i)
         const measure = _.get(state, 'fetchRandomCocktail.cocktail.drinks[0].strMeasure' + i)
         if (ingredient){
-        result.push(<Ingredient 
+        result.push(<Ingredient
+            key = {i} 
             i={i}
             ingredient={ingredient}
             measure={measure}
