@@ -1,4 +1,8 @@
-import { config } from '../api-config'
+import { 
+  FETCH_DATA_FAILURE, 
+  FETCH_DATA_SUCCESS, 
+  FETCH_DATA_STARTED 
+} from '../types'
 
 const initialState = {
   loading: true,
@@ -8,19 +12,19 @@ const initialState = {
 
 export default function fetchRandomCocktail(state = initialState, action) {
     switch (action.type) {
-      case config.FETCH_DATA_STARTED:
+      case FETCH_DATA_STARTED:
         return {
           ...state,
           loading: true
         };
-      case config.FETCH_DATA_SUCCESS:
+      case FETCH_DATA_SUCCESS:
         return {
           ...state,
           loading: false,
           error: null,
           cocktail: action.payload
         };
-      case config.FETCH_DATA_FAILURE:
+      case FETCH_DATA_FAILURE:
         return {
           ...state,
           loading: false,

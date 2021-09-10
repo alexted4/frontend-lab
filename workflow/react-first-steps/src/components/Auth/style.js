@@ -15,6 +15,12 @@ const useStyles = makeStyles({
             cursor: 'pointer',
             transition: '.3s ease-in-out'   
         }
+    },
+    input:{
+        width: '270px'
+    },
+    container: {
+        minWidth: '320px'
     }
   });
 

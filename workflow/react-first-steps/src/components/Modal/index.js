@@ -1,10 +1,17 @@
-import { Dialog, DialogTitle} from '@material-ui/core';
-import useStyles from './style.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Dialog, DialogTitle} from '@material-ui/core'
+import useStyles from './style.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { useSelector } from 'react-redux'
+import Loading from '../Loading/'
+import Toast from '../Toast'
+
 
 const Modal = ({handleCloseModal, showModal, title, children}) => {
-    const classes = useStyles();
+    const classes = useStyles()
+
+    const state = useSelector(state => state)
+
     return (
         <Dialog onClose={handleCloseModal} open={showModal}>
             <DialogTitle id="modal-title" onClose={handleCloseModal} className={classes.title}>
@@ -21,8 +28,10 @@ const Modal = ({handleCloseModal, showModal, title, children}) => {
                     </div>
             </DialogTitle>
             <div className={classes.content}>
-                {children}
+                {state.authenticate.loading ? <Loading/> : children}
             </div>
+            {state.authenticate.error && 
+            <Toast message = {'Wrong credentials'} success = {false}/>}
         </Dialog>
     )  
 }
