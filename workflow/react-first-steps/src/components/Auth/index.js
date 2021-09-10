@@ -42,12 +42,12 @@ const Auth = () => {
 
   const updateUsername = (e) => {
     setUsernameError()
-    setUsername(()=>e.target.value)
+    setUsername(e.target.value)
   }
 
   const updatePassword = (e) =>{
     setPasswordError()
-    setPassword(()=>e.target.value)
+    setPassword(e.target.value)
   }
 
   const postData = () =>{
@@ -69,27 +69,27 @@ const Auth = () => {
           <br/>
           <TextField 
             className={classes.input}
-            error = {usernameError ? true : false}
+            error = {!!usernameError}
             helperText = {usernameError}
             style = {{marginBottom: usernameError ? '0px' : '41px'}}
             id="username" 
             label="Username" 
             type = "text" 
             value={username}
-            onChange={(e)=>updateUsername(e)}
+            onChange={updateUsername}
             onBlur={validateData}
           />
           <br/>
           <TextField 
             className={classes.input}
-            error = {passwordError ? true : false}
+            error = {!!passwordError}
             helperText = {passwordError}
             style = {{marginBottom: passwordError ? '0px' : '41px'}}
             id="password" 
             label="Password" 
             type="password" 
             value={password}
-            onChange={(e)=>updatePassword(e)}
+            onChange={updatePassword}
             onBlur={validateData}
           />
           <Typography variant="subtitle1" align="center" className={classes.switchBlock}>

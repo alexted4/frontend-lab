@@ -6,7 +6,8 @@ import {
   REGISTER_FAILURE, 
   AUTHENTICATE_STARTED, 
   ADD_USERNAME,
-  CLEAR_ERROR 
+  CLEAR_ERROR,
+  INIT_STATE 
 } from '../types'
 
 const axios = require('axios')
@@ -92,6 +93,38 @@ export const clearError = () => {
 
 const clearErr = () => ({
   type: CLEAR_ERROR
+})
+
+export const getInitialState = () => {
+  return dispatch =>{
+    let token = ''
+    let username = ''
+    
+    if (document.cookie){
+    token = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('token='))
+        .split('=')[1];
+    username = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('username='))
+        .split('=')[1];
+    }
+    
+    if (token){
+      dispatch(stateInit(token, username))
+    } else {
+      dispatch(stateInit('',''))
+    }    
+  }
+}
+
+const stateInit = (token, username) => ({
+  type: INIT_STATE,
+  payload: {
+    token: token,
+    username: username
+  }
 })
 
 

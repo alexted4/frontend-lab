@@ -5,7 +5,8 @@ import {
     REGISTER_FAILURE, 
     AUTHENTICATE_STARTED, 
     ADD_USERNAME,
-    CLEAR_ERROR 
+    CLEAR_ERROR,
+    INIT_STATE 
 } from '../types'
 
 const initialState = {
@@ -13,7 +14,7 @@ const initialState = {
     user: {},
     loading: false
 }
-
+//16
 let token = ''
 let username = ''
 
@@ -32,7 +33,7 @@ if (token){
     initialState.user = {token: token}
     initialState.username = username
 }
-
+//33
 
 export default function authenticate(state = initialState, action) {
     switch (action.type) {
@@ -76,6 +77,12 @@ export default function authenticate(state = initialState, action) {
             return {
             ...state,
             error: null
+            }
+        case INIT_STATE:
+            return {
+            ...state,
+            token: action.payload.token,
+            username: action.payload.username
             }
         default:
             return state

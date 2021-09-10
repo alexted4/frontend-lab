@@ -37,7 +37,9 @@ const Navbar = () => {
                         onClick={handleOpenModal} 
                         variant="outlined" 
                         className={classes.navButton}
-                    >Get Started</Button>}     
+                    >
+                        Get Started
+                    </Button>}     
                 </Toolbar>
             </AppBar>
             <Modal 
