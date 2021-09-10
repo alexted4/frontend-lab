@@ -4,7 +4,8 @@ import {
     REGISTER_SUCCESS, 
     REGISTER_FAILURE, 
     AUTHENTICATE_STARTED, 
-    ADD_USERNAME 
+    ADD_USERNAME,
+    CLEAR_ERROR 
 } from '../types'
 
 const initialState = {
@@ -70,6 +71,11 @@ export default function authenticate(state = initialState, action) {
             return {
             ...state,
             username: action.payload.data
+            }
+        case CLEAR_ERROR:
+            return {
+            ...state,
+            error: null
             }
         default:
             return state

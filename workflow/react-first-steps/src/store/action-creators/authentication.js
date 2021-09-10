@@ -5,7 +5,8 @@ import {
   REGISTER_SUCCESS, 
   REGISTER_FAILURE, 
   AUTHENTICATE_STARTED, 
-  ADD_USERNAME 
+  ADD_USERNAME,
+  CLEAR_ERROR 
 } from '../types'
 
 const axios = require('axios')
@@ -82,3 +83,15 @@ const registerSuccess = data => ({
       error
     }
   })
+
+export const clearError = () => {
+  return dispatch =>{
+      dispatch(clearErr())
+  }
+}
+
+const clearErr = () => ({
+  type: CLEAR_ERROR
+})
+
+

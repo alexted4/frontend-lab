@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../store/index'
 import { Typography, TextField, Grid, DialogContent, DialogActions, Button} from '@material-ui/core'
 import useStyles from './style.js'
+
 const Joi = require('joi')
 
 const Auth = () => {
@@ -11,8 +12,8 @@ const Auth = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const [usernameError, setUsernameError] = useState()
-  const [passwordError, setPasswordError] = useState()
+  const [usernameError, setUsernameError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   const dispatch = useDispatch()
   const {login, register} = bindActionCreators(actionCreators, dispatch)
@@ -33,7 +34,9 @@ const Auth = () => {
     const validation = schema.validate({username: username, password: password})
     if (validation.error){
       const error = validation.error.details[0]
-      error.context.key === 'username' ? setUsernameError(error.message) : setPasswordError(error.message)
+      error.context.key === 'username' ? 
+      setUsernameError('Username must be at least 3 characters and can only contain letters and/or numbers') : 
+      setPasswordError('Password must be at least 3 characters and can only contain letters and/or numbers')
     }
   }
 
@@ -58,7 +61,7 @@ const Auth = () => {
   const classes = useStyles();
   return (
       <Grid container direction="column">
-        <form autoComplete="off">
+        <form autoComplete="off" className={classes.container}>
         <DialogContent>
           <Typography variant = "h4" align="center">
           {signIn ? 'Sign In' : 'Sign Up'}
@@ -68,6 +71,7 @@ const Auth = () => {
             className={classes.input}
             error = {usernameError ? true : false}
             helperText = {usernameError}
+            style = {{marginBottom: usernameError ? '0px' : '41px'}}
             id="username" 
             label="Username" 
             type = "text" 
@@ -80,6 +84,7 @@ const Auth = () => {
             className={classes.input}
             error = {passwordError ? true : false}
             helperText = {passwordError}
+            style = {{marginBottom: passwordError ? '0px' : '41px'}}
             id="password" 
             label="Password" 
             type="password" 

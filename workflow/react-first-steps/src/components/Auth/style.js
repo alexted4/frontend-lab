@@ -17,8 +17,10 @@ const useStyles = makeStyles({
         }
     },
     input:{
-        width: '100%',
-        maxWidth: '200px'
+        width: '270px'
+    },
+    container: {
+        minWidth: '320px'
     }
   });
 
