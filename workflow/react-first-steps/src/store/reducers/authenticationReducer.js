@@ -14,26 +14,6 @@ const initialState = {
     user: {},
     loading: false
 }
-//16
-let token = ''
-let username = ''
-
-if (document.cookie){
-token = document.cookie
-    .split('; ')
-    .find(row => row.startsWith('token='))
-    .split('=')[1];
-username = document.cookie
-    .split('; ')
-    .find(row => row.startsWith('username='))
-    .split('=')[1];
-}
-
-if (token){
-    initialState.user = {token: token}
-    initialState.username = username
-}
-//33
 
 export default function authenticate(state = initialState, action) {
     switch (action.type) {
