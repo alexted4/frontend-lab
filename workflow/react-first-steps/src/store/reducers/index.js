@@ -1,14 +1,14 @@
-import { combineReducers } from 'redux'
-import fetchRandomCocktail from './fetchRandomCocktailReducer'
-import authenticate from './authenticationReducer'
-import searchCocktails from './searchCocktailsReducer'
-import fetchCocktailById from './cocktailByIdReducer'
+import { combineReducers } from 'redux';
+import randomCocktail from './fetchRandomCocktailReducer';
+import auth from './authenticationReducer';
+import searchCocktails from './searchCocktailsReducer';
+import cocktailById from './cocktailByIdReducer';
 
 const reducers = combineReducers({
-    fetchRandomCocktail,
-    authenticate,
-    searchCocktails,
-    fetchCocktailById
-})
+	randomCocktail,
+	auth,
+	searchCocktails,
+	cocktailById,
+});
 
-export default reducers
+export default reducers;

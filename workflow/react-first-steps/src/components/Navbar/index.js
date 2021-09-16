@@ -1,57 +1,62 @@
-import  useStyles from './style.js'
-import { AppBar, Toolbar, Typography, Button, Box } from '@material-ui/core'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCocktail } from '@fortawesome/free-solid-svg-icons'
-import UserMenu from '../UserMenu/'
-import Modal from '../Modal'
-import Auth from '../Auth'
+import useStyles from './style.js';
+import { AppBar, Toolbar, Typography, Button, Box } from '@material-ui/core';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCocktail } from '@fortawesome/free-solid-svg-icons';
+import UserMenu from '../UserMenu/';
+import Modal from '../Modal';
+import Auth from '../Auth';
 
 const Navbar = () => {
-    const [showModal, setShowModal] = useState(false);
-    const classes = useStyles();
-    
-    const handleOpenModal = () =>{
-        setShowModal(true)
-    }
+	const [showModal, setShowModal] = useState(false);
+	const classes = useStyles();
 
-    const handleCloseModal = () =>{
-        setShowModal(false)
-    }
+	const handleOpenModal = () => {
+		setShowModal(true);
+	};
 
-    const state = useSelector((state) => state)
-    
-    if (state.authenticate.token && showModal) {handleCloseModal()} 
-    return (
-        <>
-            <AppBar position="static">
-                <Toolbar>
-                    <Box flexGrow={1}>
-                        <FontAwesomeIcon icon = {faCocktail} size = "2x"/>
-                        <Typography variant="h4" className={classes.heading}>
-                            Cocktail App
-                        </Typography>
-                    </Box>
-                    {state.authenticate.token ? <UserMenu/> : 
-                    <Button 
-                        onClick={handleOpenModal} 
-                        variant="outlined" 
-                        className={classes.navButton}
-                    >
-                        Get Started
-                    </Button>}     
-                </Toolbar>
-            </AppBar>
-            <Modal 
-                handleCloseModal={handleCloseModal} 
-                showModal={showModal}
-                title={'Authentication'}
-            >
-                <Auth/>
-            </Modal>
-        </>
-    )
-}
+	const handleCloseModal = () => {
+		setShowModal(false);
+	};
 
-export default Navbar
+	const state = useSelector((state) => state);
+
+	if (state.auth.token && showModal) {
+		handleCloseModal();
+	}
+	return (
+		<>
+			<AppBar position="static">
+				<Toolbar>
+					<Box flexGrow={1}>
+						<FontAwesomeIcon icon={faCocktail} size="2x" />
+						<Typography variant="h4" className={classes.heading}>
+							Cocktail App
+						</Typography>
+					</Box>
+					{state.auth.token ? (
+						<UserMenu />
+					) : (
+						<Button
+							onClick={handleOpenModal}
+							variant="outlined"
+							className={classes.navButton}
+						>
+							Get Started
+						</Button>
+					)}
+				</Toolbar>
+			</AppBar>
+			<Modal
+				handleCloseModal={handleCloseModal}
+				showModal={showModal}
+				title={'Authentication'}
+			>
+				<Auth />
+			</Modal>
+		</>
+	);
+};
+
+export default Navbar;
