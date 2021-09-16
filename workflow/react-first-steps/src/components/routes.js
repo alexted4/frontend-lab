@@ -1,27 +1,40 @@
 import React from 'react';
 import Loading from './Loading';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const Navbar = React.lazy(() => import('./Navbar'));
 const HomePage = React.lazy(() => import('./HomePage'));
-const Page404 = React.lazy(() => import('./Page404'));
+const CocktailSearch = React.lazy(() => import('./CocktailSearch'));
 
-const routes = () => {
+const Page404 = React.lazy(() => import('./Page404'));
+const Page403 = React.lazy(() => import('./Page403'));
+
+const routes = ({ token }) => {
     return (
-        <React.Suspense fallback = {<Loading/>}>
+        <React.Suspense fallback={<Loading />}>
             <Router>
                 <Switch>
-                    <Route exact path = "/">
-                        <Navbar/>
-                        <HomePage/>
+                    <Route exact path="/">
+                        <Navbar />
+                        <HomePage />
                     </Route>
-                    <Route path = "*">
-                        <Page404/>
+                    <Route exact path="/cocktailSearch">
+                        {token ? (
+                            <>
+                                <Navbar />
+                                <CocktailSearch />
+                            </>
+                        ) : (
+                            <Page403 />
+                        )}
+                    </Route>
+                    <Route path="*">
+                        <Page404 />
                     </Route>
                 </Switch>
             </Router>
         </React.Suspense>
-    )
-}
+    );
+};
 
-export default routes
+export default routes;

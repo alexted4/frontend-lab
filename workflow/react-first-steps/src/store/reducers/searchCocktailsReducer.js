@@ -1,26 +1,26 @@
-import { FETCH_DATA_FAILURE, FETCH_DATA_SUCCESS, FETCH_DATA_STARTED } from '../types';
+import { SEARCH_FAILURE, SEARCH_SUCCESS, SEARCH_STARTED } from '../types';
 
 const initialState = {
-    loading: true,
+    loading: false,
     error: null,
-    cocktail: {},
+    searchResult: {},
 };
 
-export default function randomCocktail(state = initialState, action) {
+export default function searchCocktails(state = initialState, action) {
     switch (action.type) {
-        case FETCH_DATA_STARTED:
+        case SEARCH_STARTED:
             return {
                 ...state,
                 loading: true,
             };
-        case FETCH_DATA_SUCCESS:
+        case SEARCH_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 error: null,
-                cocktail: action.payload,
+                searchResult: action.payload,
             };
-        case FETCH_DATA_FAILURE:
+        case SEARCH_FAILURE:
             return {
                 ...state,
                 loading: false,

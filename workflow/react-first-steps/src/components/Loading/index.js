@@ -1,11 +1,11 @@
-import { CircularProgress } from "@material-ui/core";
+import { CircularProgress } from '@material-ui/core';
 
 const Loading = () => {
     return (
-        <div align="center" >
-            <CircularProgress/>
+        <div align="center">
+            <CircularProgress />
         </div>
-    )
-}
+    );
+};
 
-export default Loading
+export default Loading;

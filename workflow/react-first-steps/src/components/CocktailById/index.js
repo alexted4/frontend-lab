@@ -5,24 +5,24 @@ import { actionCreators } from '../../store/index';
 import Loading from '../Loading';
 import Cocktail from '../Cocktail';
 
-const RandomCocktail = () => {
+const CocktailById = ({ id }) => {
     const state = useSelector(state => state);
 
     const dispatch = useDispatch();
-    const { fetchRandomCocktail } = bindActionCreators(actionCreators, dispatch);
+    const { fetchCocktailById } = bindActionCreators(actionCreators, dispatch);
 
-    const loading = state.randomCocktail.loading;
+    const loading = state.cocktailById.loading;
 
     useEffect(() => {
-        fetchRandomCocktail();
+        fetchCocktailById(id);
     }, []);
 
-    if (loading) {
+    if (loading || !state.cocktailById.cocktail.drinks) {
         return <Loading />;
     } else {
-        const data = state.randomCocktail.cocktail.drinks[0];
+        const data = state.cocktailById.cocktail.drinks[0];
         return <Cocktail data={data} />;
     }
 };
 
-export default RandomCocktail;
+export default CocktailById;

@@ -1,25 +1,17 @@
+import Ingredient from '../Ingredient';
+import _ from 'lodash';
 
-import { useSelector } from "react-redux"
-import Ingredient from '../Ingredient'
-var _ = require('lodash');
+const Ingredients = ({ data }) => {
+    const result = [];
 
-const Ingredients = () => {
-    const state = useSelector((state) => state)
-    const result = []
-
-    for (let i = 1; i < 16; i++){
-        const ingredient = _.get(state, 'fetchRandomCocktail.cocktail.drinks[0].strIngredient' + i)
-        const measure = _.get(state, 'fetchRandomCocktail.cocktail.drinks[0].strMeasure' + i)
-        if (ingredient){
-        result.push(<Ingredient
-            key = {i} 
-            i={i}
-            ingredient={ingredient}
-            measure={measure}
-        />)
+    for (let i = 1; i < 16; i++) {
+        const ingredient = _.get(data, 'strIngredient' + i);
+        const measure = _.get(data, 'strMeasure' + i);
+        if (ingredient) {
+            result.push(<Ingredient key={i} i={i} ingredient={ingredient} measure={measure} />);
         } else break;
     }
-    return result
-}
+    return result;
+};
 
-export default Ingredients
+export default Ingredients;
