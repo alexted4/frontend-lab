@@ -5,10 +5,10 @@ import searchCocktails from './searchCocktailsReducer';
 import cocktailById from './cocktailByIdReducer';
 
 const reducers = combineReducers({
-	randomCocktail,
-	auth,
-	searchCocktails,
-	cocktailById,
+    randomCocktail,
+    auth,
+    searchCocktails,
+    cocktailById,
 });
 
 export default reducers;

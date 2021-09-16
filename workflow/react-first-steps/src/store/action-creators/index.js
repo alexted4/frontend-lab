@@ -4,11 +4,11 @@ import { searchCocktails } from './searchCocktails';
 import { fetchCocktailById } from './cocktailById';
 
 export {
-	fetchRandomCocktail,
-	login,
-	register,
-	clearError,
-	getInitialState,
-	searchCocktails,
-	fetchCocktailById,
+    fetchRandomCocktail,
+    login,
+    register,
+    clearError,
+    getInitialState,
+    searchCocktails,
+    fetchCocktailById,
 };

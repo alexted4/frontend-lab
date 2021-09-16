@@ -8,19 +8,19 @@ import { bindActionCreators } from 'redux';
 import { actionCreators } from './store/index';
 
 function App() {
-	const dispatch = useDispatch();
-	const { getInitialState } = bindActionCreators(actionCreators, dispatch);
-	const state = useSelector((state) => state);
+    const dispatch = useDispatch();
+    const { getInitialState } = bindActionCreators(actionCreators, dispatch);
+    const state = useSelector(state => state);
 
-	useEffect(() => {
-		getInitialState();
-	}, []);
+    useEffect(() => {
+        getInitialState();
+    }, []);
 
-	return (
-		<ThemeProvider theme={MUICustomTheme}>
-			<Routes token={state.auth.token} />
-		</ThemeProvider>
-	);
+    return (
+        <ThemeProvider theme={MUICustomTheme}>
+            <Routes token={state.auth.token} />
+        </ThemeProvider>
+    );
 }
 
 export default App;

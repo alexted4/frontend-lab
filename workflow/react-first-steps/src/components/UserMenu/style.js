@@ -1,19 +1,19 @@
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
-    logoutButton:{
+    logoutButton: {
         marginLeft: '10px',
-        border: "1px solid #CDD6CF",
-        color: '#fff'
+        border: '1px solid #CDD6CF',
+        color: '#fff',
     },
     linkOverride: {
         color: 'white',
-        textDecoration: 'none'
+        textDecoration: 'none',
     },
-    greeting:{
+    greeting: {
         color: 'white',
-        marginRight: '10px'
-    }
-  });
+        marginRight: '10px',
+    },
+});
 
-  export default useStyles;
+export default useStyles;

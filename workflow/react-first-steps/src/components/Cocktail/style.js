@@ -1,36 +1,36 @@
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
-    table:{
-        "& table":{
+    table: {
+        '& table': {
             width: '100%',
-            textAlign: 'center'
+            textAlign: 'center',
         },
-        "& td": {
+        '& td': {
             padding: '10px 20px 10px 20px',
             textAlign: 'center',
             borderTop: '1px solid #333',
             margin: 0,
-        }
+        },
     },
     ingredient: {
         borderLeft: '1px solid #333',
-        borderRight: '1px solid #333'
+        borderRight: '1px solid #333',
     },
-    thumbnail:{
+    thumbnail: {
         maxWidth: '200px',
         filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
         borderRadius: '5px',
-        marginTop: '40px'
+        marginTop: '40px',
     },
-    favorite:{
+    favorite: {
         marginLeft: '10px',
         position: 'absolute',
-        top: 80
+        top: 80,
     },
-    instructions:{
-        marginTop: '20px'
-    }
-  });
+    instructions: {
+        marginTop: '20px',
+    },
+});
 
 export default useStyles;

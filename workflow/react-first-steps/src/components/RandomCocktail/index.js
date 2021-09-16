@@ -6,23 +6,23 @@ import Loading from '../Loading';
 import Cocktail from '../Cocktail';
 
 const RandomCocktail = () => {
-	const state = useSelector((state) => state);
+    const state = useSelector(state => state);
 
-	const dispatch = useDispatch();
-	const { fetchRandomCocktail } = bindActionCreators(actionCreators, dispatch);
+    const dispatch = useDispatch();
+    const { fetchRandomCocktail } = bindActionCreators(actionCreators, dispatch);
 
-	const loading = state.randomCocktail.loading;
+    const loading = state.randomCocktail.loading;
 
-	useEffect(() => {
-		fetchRandomCocktail();
-	}, []);
+    useEffect(() => {
+        fetchRandomCocktail();
+    }, []);
 
-	if (loading) {
-		return <Loading />;
-	} else {
-		const data = state.randomCocktail.cocktail.drinks[0];
-		return <Cocktail data={data} />;
-	}
+    if (loading) {
+        return <Loading />;
+    } else {
+        const data = state.randomCocktail.cocktail.drinks[0];
+        return <Cocktail data={data} />;
+    }
 };
 
 export default RandomCocktail;

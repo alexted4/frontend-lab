@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
     image: {
@@ -6,7 +6,7 @@ const useStyles = makeStyles({
         height: '450px',
         objectFit: 'contain',
         objectPosition: 'center',
-        filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))'
+        filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
     },
     imageText: {
         color: '#555',
@@ -16,15 +16,15 @@ const useStyles = makeStyles({
         lineHeight: '18px',
         marginLeft: '110px',
         marginTop: '-20px',
-        transform: 'rotate(-15.81deg)'
+        transform: 'rotate(-15.81deg)',
     },
     quotes: {
         marginTop: '150px',
         animationTimingFunction: 'linear',
-	    animationDuration: '1000ms',
-	    animationDelay: '3000ms',
-	    animationDirection: 'normal'
-    }
-  });
+        animationDuration: '1000ms',
+        animationDelay: '3000ms',
+        animationDirection: 'normal',
+    },
+});
 
 export default useStyles;

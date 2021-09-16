@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/styles"
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
     container: {
@@ -6,9 +6,9 @@ const useStyles = makeStyles({
         padding: '20px 20px 20px 20px',
         borderRadius: '5px',
         '& h2': {
-            color: '#222'
-        }
-    }
-  })
+            color: '#222',
+        },
+    },
+});
 
-export default useStyles
+export default useStyles;
