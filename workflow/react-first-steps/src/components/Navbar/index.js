@@ -21,7 +21,8 @@ const Navbar = () => {
     }
 
     const state = useSelector((state) => state)
-    if (state.authenticate.user.token && showModal) {handleCloseModal()} 
+    
+    if (state.authenticate.token && showModal) {handleCloseModal()} 
     return (
         <>
             <AppBar position="static">
@@ -32,7 +33,7 @@ const Navbar = () => {
                             Cocktail App
                         </Typography>
                     </Box>
-                    {state.authenticate.user.token ? <UserMenu/> : 
+                    {state.authenticate.token ? <UserMenu/> : 
                     <Button 
                         onClick={handleOpenModal} 
                         variant="outlined" 

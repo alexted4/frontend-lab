@@ -10,7 +10,7 @@ const initialState = {
   cocktail: {}
 }
 
-export default function fetchRandomCocktail(state = initialState, action) {
+export default function searchCocktails(state = initialState, action) {
     switch (action.type) {
       case FETCH_DATA_STARTED:
         return {

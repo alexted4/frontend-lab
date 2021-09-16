@@ -22,7 +22,7 @@ export default function authenticate(state = initialState, action) {
             ...state,
             loading: false,
             error: null,
-            user: action.payload
+            token: action.payload.token
             }
         case LOGIN_FAILURE:
             return {

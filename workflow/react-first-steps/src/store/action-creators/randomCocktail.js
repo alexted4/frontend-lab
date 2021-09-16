@@ -9,15 +9,15 @@ const axios = require('axios')
 
 export const fetchRandomCocktail = () => {
     return dispatch => {
-        dispatch(fetchRandomCocktailStarted());
+        dispatch(fetchRandomCocktailStarted())
         
         axios
           .get(`${config.API_URL}/cocktails/random`)
           .then(res => {
-            dispatch(fetchRandomCocktailSuccess(res.data));
+            dispatch(fetchRandomCocktailSuccess(res.data))
           })
           .catch(err => {
-            dispatch(fetchRandomCocktailFailure(err.message));
+            dispatch(fetchRandomCocktailFailure(err.message))
           })
       }
 }

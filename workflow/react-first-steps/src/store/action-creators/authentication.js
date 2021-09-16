@@ -99,7 +99,7 @@ export const getInitialState = () => {
   return dispatch =>{
     let token = ''
     let username = ''
-    
+  
     if (document.cookie){
     token = document.cookie
         .split('; ')

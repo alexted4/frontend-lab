@@ -10,7 +10,7 @@ const useStyles = makeStyles({
         fontFamily: 'Quicksand',
         padding: '40px 70px 40px 70px',
         textAlign: 'center',
-        background: '#E0E0E0'
+        background: '#e3eae4'
     },
     wrapper:{
         display: 'flex',

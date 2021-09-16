@@ -4,7 +4,7 @@ const MUICustomTheme = createTheme({
   palette: {
     primary:{
       main: '#4caf50',
-      contrastText: '#cdd6cf'
+      contrastText: '#ddd'
     },
 	  secondary: {
       main: '#1b5e20'
