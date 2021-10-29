@@ -15,10 +15,10 @@ Since the project is not a small thing, let's track progress of it here (on this
 ## Progress
 
 - [x] Read the [Official Tutorial](https://ru.reactjs.org/docs/getting-started.html) and try it out
-- [ ] [Init Project](./init.md)
-- [ ] [First steps](./first_steps.md)
-- [ ] [Data Management](./data-management.md)
-- [ ] [Authentication](./authentication.md)
+- [x] [Init Project](./init.md)
+- [x] [First steps](./first_steps.md)
+- [x] [Data Management](./data-management.md)
+- [x] [Authentication](./authentication.md)
 
 ## Links you'll definitely use
 
